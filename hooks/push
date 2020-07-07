@@ -1,9 +1,16 @@
 #!/bin/bash
 
+function jsonValue() {
+KEY=$1
+num=$2
+awk -F"[,:}]" '{for(i=1;i<=NF;i++){if($i~/\042'$KEY'\042/){print $(i+1)}}}' | tr -d '"' | sed -n ${num}p
+}
+
+
 {
 	while read repo;
 do
-	tags=`wget -q https://registry.hub.docker.com/v1/repositories/$repo/tags -O -  | sed -e 's/[][]//g' -e 's/"//g' -e 's/ //g' | tr '}' '\n'  | awk -F: '{print $3}'`
+	tags=`curl "https://registry.hub.docker.com/v2/repositories/$repo/tags" /dev/null 2>&1 | jsonValue name`
 
 	read -ra tags_array <<< "$tags"
 
