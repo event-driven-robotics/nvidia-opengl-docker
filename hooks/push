@@ -11,4 +11,4 @@ do
 		docker push $repo:${tag}_opengl
 	done <<< "$tags"
 done
-} < ../repos.txt
+} < repos.txt
