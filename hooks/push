@@ -15,6 +15,7 @@ do
 	read -ra tags_array <<< "$tags"
 
 	while read -r tag; do
+		if [[ "$tag" == *_opengl ]]; then continue; fi
 		docker push $repo:${tag}_opengl
 	done <<< "$tags"
 done
