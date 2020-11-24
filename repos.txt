@@ -2,3 +2,4 @@ eventdrivenrobotics/yarp
 eventdrivenrobotics/event-driven
 eventdrivenrobotics/gazebo
 eventdrivenrobotics/esim
+eventdrivenrobotics/atis-gen3
